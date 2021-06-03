@@ -1,16 +1,12 @@
 <template>
   <v-app dark>
-    <Header :drawer="drawer" :toggleDrawer="toggleDrawer" />
+    <Header />
 
     <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-main>
 
-    <MainNavigation :drawer="drawer" />
-
-    <v-footer :absolute="!fixed" app> </v-footer>
+    <MainNavigation />
   </v-app>
 </template>
 

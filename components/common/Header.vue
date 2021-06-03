@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app>
-    <v-app-bar-nav-icon @click.stop="toggleDrawer" app />
+    <v-app-bar-nav-icon @click.stop="drawer = !drawer" app color="primary" />
     <v-toolbar-title v-text="title" />
     <v-spacer></v-spacer>
     <v-toolbar-items>
@@ -20,16 +20,6 @@ export default {
     return {
       title: "Test Task Calendar",
     };
-  },
-  props: {
-    drawer: {
-      type: Boolean,
-      required: true,
-    },
-    toggleDrawer: {
-      type: Function,
-      required: true,
-    },
   },
 };
 </script>

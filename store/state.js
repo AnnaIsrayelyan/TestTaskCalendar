@@ -1,3 +1,3 @@
 export default {
-	drawer: null
+	drawer: true
 };

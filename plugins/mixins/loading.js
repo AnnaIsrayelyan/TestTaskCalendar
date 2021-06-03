@@ -3,8 +3,7 @@ import Vue from 'vue';
 Vue.mixin({
 	data() {
 		return {
-			load: true,
-			rootPageMounted: false
+			pageMounted: false
 		};
 	},
 	methods: {

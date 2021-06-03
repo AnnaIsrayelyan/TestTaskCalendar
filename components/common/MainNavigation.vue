@@ -3,7 +3,7 @@
     <v-list>
       <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
         <v-list-item-action>
-          <v-icon light>{{ item.icon }}</v-icon>
+          <v-icon light color="primary">{{ item.icon }}</v-icon>
         </v-list-item-action>
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item>
@@ -13,12 +13,6 @@
 
 <script>
 export default {
-  props: {
-    drawer: {
-      type: Boolean,
-      required: true,
-    },
-  },
   data() {
     return {
       items: [
