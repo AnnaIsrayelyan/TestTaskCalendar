@@ -96,6 +96,7 @@ export default {
           info: "#f34fc6",
           warning: "#FB8C00",
           error: "#FF5252",
+          neutral: "#cccccc",
         },
         light: {
           primary: "#22daff",
@@ -105,6 +106,7 @@ export default {
           info: "#ff53d0",
           warning: "#ff8e00",
           error: "#ff5252",
+          neutral: "#cccccc",
         },
       },
       {
@@ -117,6 +119,7 @@ export default {
           info: "#6156d8",
           warning: "#1565C0",
           error: "#FF7043",
+          neutral: "#cccccc",
         },
         light: {
           primary: "#ffa450",
@@ -126,6 +129,7 @@ export default {
           info: "#7365ff",
           warning: "#2e8ac0",
           error: "#ff5e3c",
+          neutral: "#cccccc",
         },
       },
       {
@@ -138,6 +142,7 @@ export default {
           info: "#2196F3",
           warning: "#9C27B0",
           error: "#B71C1C",
+          neutral: "#cccccc",
         },
         light: {
           primary: "#6ae240",
@@ -147,6 +152,7 @@ export default {
           info: "#229eff",
           warning: "#e239ff",
           error: "#e82424",
+          neutral: "#cccccc",
         },
       },
     ],

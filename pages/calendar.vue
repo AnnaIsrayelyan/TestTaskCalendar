@@ -28,10 +28,9 @@ export default {
     this.pageMounted = false;
   },
   mounted() {
-    console.log(this.pageMounted);
     setTimeout(() => {
       this.getCalendar();
-    }, 3000);
+    }, 1000);
   },
   methods: {
     async getCalendar() {
