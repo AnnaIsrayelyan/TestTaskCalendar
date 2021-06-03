@@ -1,6 +1,7 @@
 import axios from 'axios';
 import groups from '~/api/groups.js';
 import groupTypes from '~/api/groupTypes.js';
+import police from '~/api/police.js';
 import calendar from '~/api/calendar.js';
 
 export const GetGroups = async () => {
@@ -16,4 +17,8 @@ export const GetCalendar = async () => {
 export const GetGroupTypes = async () => {
 	//axios request
 	return groupTypes;
+};
+export const GetPolice = async () => {
+	//axios request
+	return police;
 };

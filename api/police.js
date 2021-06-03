@@ -3,23 +3,19 @@ const police = {
 	data: [
 		{
 			id: 0,
-			firstname: 'John',
-			lastname: 'Legend'
+			name: 'John Legend'
 		},
 		{
 			id: 1,
-			firstname: 'Freddie',
-			lastname: 'Mercury'
+			name: 'Freddie Mercury'
 		},
 		{
 			id: 2,
-			firstname: 'Alex',
-			lastname: 'Rose'
+			name: 'Alex Rose'
 		},
 		{
 			id: 3,
-			firstname: 'Michael',
-			lastname: 'Jackson'
+			name: 'Michael Jackson'
 		}
 	]
 };

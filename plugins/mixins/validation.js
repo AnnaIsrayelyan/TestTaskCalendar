@@ -5,7 +5,7 @@ Vue.mixin({
 	data() {
 		return {
 			valid: false,
-			commonRule: [value => !!value || 'Invalid']
+			emptyRule: [value => !!value || 'Field is empty']
 		};
 	}
 });
