@@ -11,5 +11,15 @@ Vue.mixin({
 		getToday() {
 			return moment().format('YYYY-MM-DD');
 		}
+	},
+	computed: {
+		drawer: {
+			get() {
+				return this.$store.state.drawer;
+			},
+			set(val) {
+				this.setDrawer(val);
+			}
+		}
 	}
 });

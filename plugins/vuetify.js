@@ -6,11 +6,7 @@ Vue.use(Vuetify);
 export default ctx => {
 	const vuetify = new Vuetify({
 		theme: {
-			dark: false,
-			themes: {
-				light: {},
-				dark: {}
-			}
+			dark: false
 		}
 	});
 
