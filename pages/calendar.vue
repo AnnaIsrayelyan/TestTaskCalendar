@@ -43,6 +43,9 @@ export default {
   mounted() {
     setTimeout(() => {
       this.pageMounted = true;
+      this.territories = [];
+      this.calendarDays = [];
+      this.territorySchedule = [];
       this.getCalendar();
       this.getTerritories();
     }, 1000);
@@ -60,21 +63,23 @@ export default {
       return dates;
     },
     async getCalendar() {
-      // try {
-      const response = await GetCalendar();
-      if (response.status == 200) {
-        this.calendarDays = this.enumerateDaysBetweenDates(
-          response.data.startDate,
-          response.data.endDate
-        );
-        this.territorySchedule = response.data.territorySchedule;
-        this.regenerateScheduleStructure();
-      } else {
-        // alert error
+      try {
+        const response = await GetCalendar();
+        if (response.status == 200) {
+          this.calendarDays = this.enumerateDaysBetweenDates(
+            response.data.startDate,
+            response.data.endDate
+          );
+
+          console.log(1, response);
+          this.territorySchedule = response.data.territorySchedule;
+          this.regenerateScheduleStructure();
+        } else {
+          //alert error
+        }
+      } catch (e) {
+        console.log(response);
       }
-      // } catch (e) {
-      //   console.log(response);
-      // }
     },
     regenerateScheduleStructure() {
       this.territorySchedule.map((territory) => {
@@ -107,27 +112,6 @@ export default {
         });
         territory.schedule = Object.assign([], schedule);
       });
-    },
-    dynamicSortMultiple() {
-      /*
-       * save the arguments object as it will be overwritten
-       * note that arguments object is an array-like object
-       * consisting of the names of the properties to sort by
-       */
-      var props = arguments;
-      return function (obj1, obj2) {
-        var i = 0,
-          result = 0,
-          numberOfProperties = props.length;
-        /* try getting a different result from 0 (equal)
-         * as long as we have extra properties to compare
-         */
-        while (result === 0 && i < numberOfProperties) {
-          result = dynamicSort(props[i])(obj1, obj2);
-          i++;
-        }
-        return result;
-      };
     },
     async getTerritories() {
       try {
