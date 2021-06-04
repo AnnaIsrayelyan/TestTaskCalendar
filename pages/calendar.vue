@@ -43,9 +43,6 @@ export default {
   mounted() {
     setTimeout(() => {
       this.pageMounted = true;
-      this.territories = [];
-      this.calendarDays = [];
-      this.territorySchedule = [];
       this.getCalendar();
       this.getTerritories();
     }, 1000);
@@ -110,7 +107,7 @@ export default {
             return a.sort > b.sort ? 1 : b.sort > a.sort ? -1 : 0;
           });
         });
-        territory.schedule = Object.assign([], schedule);
+        territory.customSchedule = Object.assign([], schedule);
       });
     },
     async getTerritories() {
