@@ -64,7 +64,6 @@
                 ? calcWidth(item.startDateTime, item.endDateTime)
                 : 96
             }%`"
-            @click="editWatch(j, i)"
           >
             <div class="pl-1">
               <strong>{{ getStartTime(item.startDateTime) }}</strong>
@@ -74,22 +73,13 @@
         </div>
       </div>
     </div>
-    <WatchDialog
-      v-model="showWatchDialog"
-      :selectedWatch="selectedWatch"
-      :saveWatch="saveWatch"
-      :clearWatch="clearWatch"
-      :deleteWatch="deleteWatch"
-    />
   </v-row>
 </template>
 
 <script>
 import moment from "moment";
-import WatchDialog from "~/components/dialogs/WatchDialog";
 
 export default {
-  components: { WatchDialog },
   props: {
     territorySchedule: {
       type: Array,
@@ -99,11 +89,17 @@ export default {
       type: Array,
       required: true,
     },
+    openWatchDialog: {
+      type: Function,
+      required: true,
+    },
+    editWatch: {
+      type: Function,
+      required: true,
+    },
   },
   data() {
     return {
-      showWatchDialog: false,
-      selectedWatch: null,
       colors: [
         "blue",
         "indigo",
@@ -121,16 +117,6 @@ export default {
     },
   },
   methods: {
-    openGroupDialog() {
-      this.showWatchDialog = !this.showWatchDialog;
-    },
-    editWatch(j, i) {
-      this.selectedWatch = this.territorySchedule[j].schedule[i];
-      this.openGroupDialog();
-    },
-    clearWatch() {},
-    saveWatch() {},
-    deleteWatch() {},
     getColor() {
       return this.colors[Math.floor(Math.random() * this.colors.length)];
     },

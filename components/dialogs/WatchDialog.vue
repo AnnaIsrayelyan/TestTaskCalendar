@@ -2,8 +2,11 @@
   <v-row justify="center">
     <v-dialog v-model="show" persistent max-width="800px">
       <v-card>
+        {{ watch }}
         <v-card-title>
-          <span class="text-h5">{{ watch.id ? "Edit" : "Add" }} Watch</span>
+          <span class="text-h5"
+            >{{ watch.id !== undefined ? "Edit" : "Add" }} Watch</span
+          >
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -19,8 +22,12 @@
           <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text color="error" @click="deleteWatch" v-if="watch.id">
+          <v-btn
+            text
+            color="error"
+            @click="deleteWatch(watch.id)"
+            v-if="watch.id !== undefined"
+          >
             Delete
           </v-btn>
           <v-spacer></v-spacer>
@@ -60,10 +67,10 @@ export default {
   data() {
     return {
       watch: {
-        name: null,
-        type: null,
-        police: [],
-        carNumber: null,
+        startDateTime: null,
+        endDateTime: null,
+        groupName: null,
+        groupId: null,
       },
     };
   },
@@ -90,7 +97,7 @@ export default {
   watch: {
     show: function (newValue, oldValue) {
       if (oldValue && !newValue) {
-        this.$refs.groupForm.reset();
+        this.$refs.watchForm.reset();
       }
     },
     selectedWatch() {

@@ -15,26 +15,37 @@
         <TerritoryCalendar
           :territorySchedule="territorySchedule"
           :calendarDays="calendarDays"
+          :openWatchDialog="openWatchDialog"
+          :editWatch="editWatch"
         />
       </v-col>
     </v-row>
+
+    <WatchDialog
+      v-model="showWatchDialog"
+      :selectedWatch="selectedWatch"
+      :saveWatch="saveWatch"
+      :clearWatch="clearWatch"
+      :deleteWatch="deleteWatch"
+    />
   </v-container>
 </template>
 
 <script>
 import moment from "moment";
 import TerritoryCalendar from "~/components/common/TerritoryCalendar";
+import WatchDialog from "~/components/dialogs/WatchDialog";
 import { GetCalendar, GetTerritories } from "~/api/DataService.js";
 
 export default {
-  components: {
-    TerritoryCalendar,
-  },
+  components: { WatchDialog, TerritoryCalendar },
   data() {
     return {
       territories: [],
       calendarDays: [],
       territorySchedule: [],
+      showWatchDialog: false,
+      selectedWatch: null,
     };
   },
   beforeMount() {
@@ -48,6 +59,26 @@ export default {
     }, 1000);
   },
   methods: {
+    openWatchDialog() {
+      this.showWatchDialog = !this.showWatchDialog;
+    },
+    editWatch(j, i) {
+      this.selectedWatch = this.territorySchedule[j].schedule[i];
+      this.openWatchDialog();
+    },
+    clearWatch() {},
+    saveWatch() {},
+    deleteWatch(id) {
+      this.territorySchedule.forEach(function (territory) {
+        let schedule = territory.schedule.filter((s) => s.id != id);
+
+        territory.schedule = Object.assign([], schedule);
+      });
+      this.territorySchedule.customSchedule = null;
+      console.log(this.territorySchedule);
+      this.regenerateScheduleStructure();
+      this.openWatchDialog();
+    },
     enumerateDaysBetweenDates(startDate, endDate) {
       var dates = [];
 
@@ -68,7 +99,6 @@ export default {
             response.data.endDate
           );
 
-          console.log(1, response);
           this.territorySchedule = response.data.territorySchedule;
           this.regenerateScheduleStructure();
         } else {
@@ -107,8 +137,11 @@ export default {
             return a.sort > b.sort ? 1 : b.sort > a.sort ? -1 : 0;
           });
         });
+        console.log(schedule);
         territory.customSchedule = Object.assign([], schedule);
       });
+
+      this.territorySchedule = Object.assign([], this.territorySchedule);
     },
     async getTerritories() {
       try {
