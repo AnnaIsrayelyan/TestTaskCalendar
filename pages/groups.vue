@@ -65,6 +65,7 @@
       :groupTypes="groupTypes"
       :police="police"
       :saveGroup="saveGroup"
+      :clearGroup="clearGroup"
     />
   </v-container>
 </template>
@@ -132,7 +133,6 @@ export default {
       this.showAddGroupDialog = true;
     },
     saveGroup(group) {
-      console.log(group);
       if (group.id === undefined) {
         group.id = this.groups[this.groups.length - 1].id + 1;
         this.groups.push(group);
@@ -143,6 +143,9 @@ export default {
     },
     deleteGroup(id) {
       this.groups = this.groups.filter((group) => group.id !== id);
+    },
+    clearGroup() {
+      this.selectedGroup = null;
     },
     async getGroups() {
       try {

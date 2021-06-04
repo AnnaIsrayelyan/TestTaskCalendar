@@ -87,6 +87,10 @@ export default {
       type: Function,
       required: true,
     },
+    clearGroup: {
+      type: Function,
+      required: true,
+    },
   },
   data() {
     return {
@@ -100,6 +104,7 @@ export default {
   },
   methods: {
     closeDialog() {
+      this.clearGroup();
       this.show = !this.show;
     },
     saveDialogGroup() {
